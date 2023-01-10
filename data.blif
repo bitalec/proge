@@ -1,0 +1,59 @@
+.model DATAPATH
+.inputs S
+.outputs o1 o0 OCOMP1 OCOMP2 OCOMP3 #uscita MUX o1 o0  OCOMP sono uguaglianze
+
+#costante1
+.names S ONE1
+- 0
+.names S ONE0
+- 1
+
+#costante 0
+.names S C1
+- 0
+.names S C0
+- 0
+#costante2
+.names S TWO1
+- 1
+.names S TWO0
+- 0
+
+#costante3
+.names S TRE1
+- 1
+.names S TRE0
+- 1
+
+
+#MUX A DUE BIT IL VALORE IN USCITA VERRà CONTROLLATO SE è UGUALE A 1/2/3
+#USCITA DEL MULTIPLEX è USCITA DELLA FUNZIONE
+.subckt MUX2 A1=C1 A0=C0 B1=OREG1 B0=OREG0 S=S O1=o1 O0=o0
+
+#CONTROLLA SE è UGUALE A 1. SARÀ IL SEGNALE DI CLOCK PER IL PRIMO REGISTRO
+.subckt UGUALE2 A1=o1 A0=o0 B1=ONE1 B0=ONE0 O=OCOMP1
+
+#CONTROLLA SE è UGUALE A 2. SARÀ IL SEGNALE DI CLOCL PER IL SECONDO REGISTRO
+.subckt UGUALE2 A1=o1 A0=o0 B1=TWO1 B0=TWO0 O=OCOMP2
+
+#CONTROLLA SE è UGUALE A 3, SARÀ IL SEGNALE DI CLOCK PER IL TERZO REGISTRO
+.subckt UGUALE2 A1=o1 A0=o0 B1=TRE1 B0=TRE0 O=OCOMP3
+
+#SOMMO IL VALORE USCITO DAL MULTIPLEX CON IL RISULTATO DELLUGUAGLIANZA
+.subckt SOMMATORE2 A1=o1 A0=o0 B1=ONE1 B0=ONE0 CIN=CIN O1=r1 O0=r0 COUT=COUT
+
+#SALVO IL VALORE
+.subckt REGISTRO2 A1=r1 A0=r0 O1=OREG1 O0=OREG0
+
+
+
+
+
+.search reg2.blif
+.search mux2.blif
+.search sommatore2.blif
+.search maggioreuguale.blif
+.search demux.blif
+
+
+.end

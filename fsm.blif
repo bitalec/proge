@@ -1,0 +1,25 @@
+.model FSM
+.inputs IN4 IN3 IN2 IN1 IN0 FINEINIT #i pirmi 5 bit sono inseriti dall'utente FINEINIT è uscita del datapath
+.outputs RESETDATA SETTORE_NON_VALIDO
+
+.start_kiss
+.i 6
+.o 2
+.s 3
+.p 8
+.r SPENTO
+
+0----- SPENTO SPENTO 10 
+-0---- SPENTO SPENTO 10
+--0--- SPENTO SPENTO 10 
+---0-- SPENTO SPENTO 10 
+----0- SPENTO SPENTO 10
+11111- SPENTO INIT 10
+-----0 INIT INIT 00
+-----1 INIT STAN 10
+00000- STAN SPENTO 00 
+
+
+.end_kiss
+
+.end

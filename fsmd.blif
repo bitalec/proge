@@ -1,0 +1,11 @@
+.model FSMD
+.inputs IN OUT SECTOR2 SECTOR1 SECOTOR0
+.outputs RESETDATA
+
+.subckt FSM 
+.subckt DATAPATH
+
+.search fsm1.blif
+.search data.blif
+
+.end
